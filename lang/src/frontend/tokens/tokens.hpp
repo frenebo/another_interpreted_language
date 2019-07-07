@@ -8,6 +8,14 @@ namespace tokens
     enum TokenType {
         INTEGER_LITERAL,
         FLOAT_LITERAL,
+        SEMICOLON,
+        IF_KEYWORD,
+        FOR_KEYWORD,
+        OPEN_PARENTHESIS,
+        CLOSE_PARENTHESIS,
+        OPEN_BRACE,
+        CLOSE_BRACE,
+        WHITESPACE,
         END_OF_INPUT_PLACEHOLDER,
     };
 

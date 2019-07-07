@@ -7,7 +7,7 @@ namespace parser
     {
         std::vector<syntax_tree::statements::Statement> statements;
 
-        unsigned long consumed_count;
+        unsigned long consumed_count = 0;
 
         while (tokens[start_idx + consumed_count].tok_type() != stop_tok_type)
         {
