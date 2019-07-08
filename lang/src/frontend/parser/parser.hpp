@@ -26,16 +26,16 @@ namespace parser
 
     // Returns number of tokens expected if successful
     std::variant<unsigned long, ParseError>
-    expect_token_types(std::vector<tokens::TokenType> tok_types, std::vector<tokens::Token> tokens, unsigned long start_idx);
+    expect_token_types(const std::vector<tokens::TokenType> & tok_types, const std::vector<tokens::Token> & tokens, unsigned long start_idx);
 
     std::variant<ParseResult<syntax_tree::statement_series::StatementSeries>, ParseError>
-    parse_statement_series(const std::vector<tokens::Token> tokens, unsigned long start_idx, tokens::TokenType stop_tok_type);
+    parse_statement_series(const std::vector<tokens::Token> & tokens, unsigned long start_idx, tokens::TokenType stop_tok_type);
 
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx);
+    parse_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx);
 
     std::variant<ParseResult<syntax_tree::compound_exp::CompoundExp>, ParseError>
-    parse_compound_exp(const std::vector<tokens::Token> tokens, unsigned long start_idx, tokens::TokenType stop_tok_type);
+    parse_compound_exp(const std::vector<tokens::Token> & tokens, unsigned long start_idx, tokens::TokenType stop_tok_type);
 }
 
 #endif

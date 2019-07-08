@@ -3,16 +3,16 @@
 namespace parser
 {
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_compound_exp_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx);
+    parse_compound_exp_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx);
 
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_for_loop_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx);
+    parse_for_loop_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx);
 
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_if_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx);
+    parse_if_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx);
 
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx)
+    parse_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx)
     {
         auto try_parse_compound_exp_statement = parse_compound_exp_statement(tokens, start_idx);
         auto try_parse_for_loop_statement =     parse_for_loop_statement(tokens, start_idx);
@@ -66,7 +66,7 @@ namespace parser
     }
 
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_compound_exp_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx)
+    parse_compound_exp_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx)
     {
         const std::string err_prefix = "Error parsing compound expression statement: ";
 
@@ -104,7 +104,7 @@ namespace parser
     }
 
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_for_loop_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx)
+    parse_for_loop_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx)
     {
         const std::string err_prefix = "Error parsing for loop: ";
 
@@ -205,7 +205,7 @@ namespace parser
     }
 
     std::variant<ParseResult<syntax_tree::statements::Statement>, ParseError>
-    parse_if_statement(const std::vector<tokens::Token> tokens, unsigned long start_idx)
+    parse_if_statement(const std::vector<tokens::Token> & tokens, unsigned long start_idx)
     {
         const std::string err_prefix = "Error parsing for loop: ";
 

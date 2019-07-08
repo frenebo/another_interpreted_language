@@ -7,6 +7,7 @@ namespace lexer
 {
     std::optional<tokens::Token> parse_next_tok(const std::string & text, unsigned long start_idx);
     std::optional<tokens::Token> try_lex_number(const std::string & text, unsigned long start_idx);
+    std::optional<tokens::Token> try_lex_identifier(const std::string & text, unsigned long start_idx);
     std::optional<tokens::Token> try_lex_whitespace(const std::string & text, unsigned long start_idx);
     std::optional<tokens::Token> try_lex_exact_strings(const std::string & text, unsigned long start_idx);
 
@@ -43,6 +44,7 @@ namespace lexer
             try_lex_number(text, start_idx),
             try_lex_exact_strings(text, start_idx),
             try_lex_whitespace(text, start_idx),
+            try_lex_identifier(text, start_idx),
         };
 
         std::optional<tokens::Token> longest_result;
@@ -61,6 +63,31 @@ namespace lexer
         }
 
         return longest_result;
+    }
+
+    std::optional<tokens::Token> try_lex_identifier(const std::string & text, unsigned long start_idx)
+    {
+        const std::string valid_first_char = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_";
+        const std::string valid_chars =      "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_1234567890";
+        if (valid_first_char.find(text[start_idx]) == std::string::npos)
+        {
+            return std::optional<tokens::Token>();
+        }
+
+        // 1 since the first char has been checked
+        unsigned long consumed_chars = 1;
+
+        while (consumed_chars < text.size() - start_idx &&
+            valid_chars.find(text[start_idx + consumed_chars]) != std::string::npos)
+        {
+            consumed_chars++;
+        }
+
+        return tokens::Token(
+            tokens::TokenType::IDENTIFIER,
+            text.substr(start_idx, consumed_chars),
+            start_idx
+        );
     }
 
     std::optional<tokens::Token> try_lex_number(const std::string & text, unsigned long start_idx)
@@ -113,7 +140,8 @@ namespace lexer
     std::optional<tokens::Token> try_lex_whitespace(const std::string & text, unsigned long start_idx)
     {
         const std::string whitespace_chars = " \n\t";
-        unsigned long consumed_count;
+        unsigned long consumed_count = 0;
+
         while (consumed_count < text.size() - start_idx &&
             whitespace_chars.find(text[start_idx + consumed_count]) != std::string::npos)
         {
@@ -131,7 +159,7 @@ namespace lexer
 
     std::optional<tokens::Token> try_lex_exact_strings(const std::string & text, unsigned long start_idx)
     {
-        // does the const std::string & do anything?
+        // does the const std::string do anything?
         const std::vector<std::pair<tokens::TokenType, const std::string>> exact_matches {
             { tokens::TokenType::SEMICOLON, ";" },
             { tokens::TokenType::IF_KEYWORD, "if" },
@@ -140,6 +168,8 @@ namespace lexer
             { tokens::TokenType::CLOSE_PARENTHESIS, ")" },
             { tokens::TokenType::OPEN_BRACE, "{" },
             { tokens::TokenType::CLOSE_BRACE, "}" },
+            { tokens::TokenType::PLUS_SIGN, "+" },
+            { tokens::TokenType::MINUS_SIGN, "-" },
         };
 
         std::optional<tokens::Token> longest_match;

@@ -2,7 +2,7 @@
 
 namespace parser
 {
-    std::variant<unsigned long, ParseError> expect_token_types(std::vector<tokens::TokenType> tok_types, std::vector<tokens::Token> tokens, unsigned long start_idx)
+    std::variant<unsigned long, ParseError> expect_token_types(const std::vector<tokens::TokenType> & tok_types, const std::vector<tokens::Token> & tokens, unsigned long start_idx)
     {
         for (unsigned long i = 0; i < tok_types.size(); i++)
         {

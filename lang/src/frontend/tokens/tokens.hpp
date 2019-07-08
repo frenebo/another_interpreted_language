@@ -6,6 +6,7 @@
 namespace tokens
 {
     enum TokenType {
+        IDENTIFIER,
         INTEGER_LITERAL,
         FLOAT_LITERAL,
         SEMICOLON,
@@ -15,6 +16,10 @@ namespace tokens
         CLOSE_PARENTHESIS,
         OPEN_BRACE,
         CLOSE_BRACE,
+
+        PLUS_SIGN,
+        MINUS_SIGN,
+
         WHITESPACE,
         END_OF_INPUT_PLACEHOLDER,
     };

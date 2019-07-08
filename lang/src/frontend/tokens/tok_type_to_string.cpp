@@ -27,6 +27,12 @@ namespace tokens
             return "Close BRACE";
         case WHITESPACE:
             return "Whitespace";
+        case IDENTIFIER:
+            return "Identifier";
+        case PLUS_SIGN:
+            return "Plus sign";
+        case MINUS_SIGN:
+            return "Minus sign";
         default:
             return "unimplented token type to string";
         }

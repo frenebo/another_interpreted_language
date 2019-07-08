@@ -3,7 +3,7 @@
 namespace parser
 {
     std::variant<ParseResult<syntax_tree::statement_series::StatementSeries>, ParseError>
-    parse_statement_series(const std::vector<tokens::Token> tokens, unsigned long start_idx, tokens::TokenType stop_tok_type)
+    parse_statement_series(const std::vector<tokens::Token> & tokens, unsigned long start_idx, tokens::TokenType stop_tok_type)
     {
         std::vector<syntax_tree::statements::Statement> statements;
 
