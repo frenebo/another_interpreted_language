@@ -20,7 +20,7 @@ namespace syntax_tree::statements
         CompoundExpStatement(syntax_tree::compound_exp::CompoundExp compound_exp);
         const syntax_tree::compound_exp::CompoundExp & compound_exp() const;
     private:
-        syntax_tree::compound_exp::CompoundExp _compound_exp;
+        const syntax_tree::compound_exp::CompoundExp _compound_exp;
     };
 
     class IfStatement
@@ -36,8 +36,8 @@ namespace syntax_tree::statements
         const syntax_tree::compound_exp::CompoundExp & condition() const;
         const statement_series::StatementSeries & body() const;
     private:
-        syntax_tree::compound_exp::CompoundExp _condition;
-        std::unique_ptr<statement_series::StatementSeries> _body;
+        const syntax_tree::compound_exp::CompoundExp _condition;
+        const std::unique_ptr<statement_series::StatementSeries> _body;
     };
 
     class ForLoopStatement
@@ -57,10 +57,10 @@ namespace syntax_tree::statements
         const syntax_tree::compound_exp::CompoundExp & increment_exp() const;
         const statement_series::StatementSeries & loop_body() const;
     private:
-        syntax_tree::compound_exp::CompoundExp _initializer_exp;
-        syntax_tree::compound_exp::CompoundExp _condition_exp;
-        syntax_tree::compound_exp::CompoundExp _increment_exp;
-        std::unique_ptr<statement_series::StatementSeries> _loop_body;
+        const syntax_tree::compound_exp::CompoundExp _initializer_exp;
+        const syntax_tree::compound_exp::CompoundExp _condition_exp;
+        const syntax_tree::compound_exp::CompoundExp _increment_exp;
+        const std::unique_ptr<statement_series::StatementSeries> _loop_body;
     };
 
     class Statement
@@ -75,7 +75,7 @@ namespace syntax_tree::statements
         Statement(VariantStatement contained_statement);
         const VariantStatement & contained_statement() const;
     private:
-        VariantStatement _contained_statement;
+        const VariantStatement _contained_statement;
     };
 }
 

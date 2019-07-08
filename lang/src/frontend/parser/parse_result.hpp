@@ -23,8 +23,8 @@ namespace parser
             return _consumed_count;
         }
     private:
-        T _contained;
-        unsigned long _consumed_count;
+        const T _contained;
+        const unsigned long _consumed_count;
     };
 }
 

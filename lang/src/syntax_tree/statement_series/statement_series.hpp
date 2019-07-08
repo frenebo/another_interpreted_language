@@ -13,7 +13,7 @@ namespace syntax_tree::statement_series
         StatementSeries(std::vector<syntax_tree::statements::Statement> statements);
         const std::vector<syntax_tree::statements::Statement> & statements() const;
     private:
-        std::vector<syntax_tree::statements::Statement> _statements;
+        const std::vector<syntax_tree::statements::Statement> _statements;
     };
 }
 

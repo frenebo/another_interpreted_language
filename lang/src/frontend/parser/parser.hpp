@@ -36,6 +36,9 @@ namespace parser
 
     std::variant<ParseResult<syntax_tree::compound_exp::CompoundExp>, ParseError>
     parse_compound_exp(const std::vector<tokens::Token> & tokens, unsigned long start_idx, tokens::TokenType stop_tok_type);
+
+    std::variant<ParseResult<syntax_tree::atomic_exps::AtomicExp>, ParseError>
+    parse_atomic_exp(const std::vector<tokens::Token> & tokens, unsigned long start_idx);
 }
 
 #endif
